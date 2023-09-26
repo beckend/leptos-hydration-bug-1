@@ -1,0 +1,45 @@
+@import "./_variables.scss";
+
+// these classes are because browsers occypy stuff on the vh and vw, this works around it and keeps it contained
+.this-h-screen {
+  height: calc(100vh - (100vh - 100%));
+}
+
+.this-w-screen {
+  width: calc(100vw - (100vw - 100%));
+}
+
+
+:root {
+  @extend .this-h-screen;
+  @extend .this-w-screen;
+
+  --this--color--primary: #0063db;
+  --this--color--accent: #2ecc40;
+
+  scrollbar-color: var(--this--color--primary) var(--this--color--accent);
+  scrollbar-width: thin;
+
+  ::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+    background: var(--this--color--primary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--this--color--accent);
+    -webkit-border-radius: 1ex;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: #000;
+  }
+}
+
+body {
+  @extend .this-h-screen;
+  // to remove scrollbar from 100vw
+  min-width: calc(100vw - (100vw - 100%));
+  position: relative;
+}

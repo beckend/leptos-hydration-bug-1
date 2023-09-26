@@ -1,0 +1,13 @@
+run_env = 'development'
+
+[databases.postgres]
+uri = 'postgresql://dev:dev@localhost:7000/dev'
+
+[server]
+path_dir_public = './tmp/public'
+path_dir_data_session = './tmp/data/session'
+cors = 'default'
+
+# [tls]
+# cert = './.internals/certificates/sang.internal/sang.internal+4.pem'
+# key = './.internals/certificates/sang.internal/sang.internal+4-key.pem'

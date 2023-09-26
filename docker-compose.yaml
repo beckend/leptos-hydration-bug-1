@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  flexo:
+    image: docker.io/nroi/flexo:latest
+    ports:
+      - '7878:7878'
+    volumes:
+      - 'flexo_pkg_sang-admin:/var/cache/flexo/pkg'
+    environment:
+      - 'FLEXO_NUM_VERSIONS_RETAIN=1'
+
+  postgresql:
+    image: docker.io/bitnami/postgresql:15
+    ports:
+      - '7000:5432'
+    volumes:
+      - 'postgresql_data_sang-admin:/bitnami/postgresql'
+    environment:
+      # - 'ALLOW_EMPTY_PASSWORD=yes'
+      - 'POSTGRESQL_REPLICATION_MODE=master'
+      - 'POSTGRESQL_USERNAME=dev'
+      - 'POSTGRESQL_PASSWORD=dev'
+      - 'POSTGRESQL_DATABASE=dev'
+      - 'POSTGRESQL_REPLICATION_USER=dev'
+      - 'POSTGRESQL_REPLICATION_PASSWORD=dev'
+      - 'POSTGRESQL_SYNCHRONOUS_COMMIT_MODE=off'
+
+volumes:
+  postgresql_data_sang-admin:
+    driver: local
+  flexo_pkg_sang-admin:
+    driver: local
